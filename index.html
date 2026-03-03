@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HAPPY BIRTHDAY RASHMALI ! ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background: #1a1a2e; color: #fff; font-family: 'Poppins', sans-serif;
+            text-align: center; overflow: hidden; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.5s ease; touch-action: manipulation;
+        }
+
+        body.party-mode { background: linear-gradient(135deg, #2d004d, #5d005d, #b31b6d); }
+        body.flash { background: #fff !important; transition: 0.1s; }
+
+        .container {
+            position: relative; z-index: 20; padding: 30px 15px;
+            background: rgba(255, 255, 255, 0.1); border-radius: 25px;
+            backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 90%; max-width: 380px; min-height: 440px;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+
+        .wishing-text { font-family: 'Pacifico', cursive; font-size: 1.8rem; margin-bottom: 15px; }
+        
+        .game-btn {
+            background: #ffd700; color: #333; border: none; padding: 12px 24px;
+            border-radius: 50px; font-weight: bold; cursor: pointer; margin: 10px; 
+            font-size: 0.9rem; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            transition: 0.2s;
+        }
+
+        /* --- APOLOGY NOTE --- */
+        #apology-scene { display: none; flex-direction: column; align-items: center; justify-content: center; position: relative; width: 100%; height: 100%; }
+        
+        #apology-note {
+            background: #fffde7; color: #444;
+            padding: 25px 20px; border-radius: 2px; transform: rotate(1deg);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2); margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive; font-size: 1.4rem; line-height: 1.4;
+            border-left: 5px solid #ffd700; width: 90%; max-width: 320px;
+        }
+
+        .apology-buttons { display: flex; gap: 10px; justify-content: center; width: 100%; position: relative; }
+        
+        /* The standard Yes button */
+        #yes-btn { background: #4caf50; color: white; }
+
+        /* The Runaway No button */
+        #no-btn { background: #f44336; color: white; position: relative; z-index: 100; transition: 0.1s ease-out; }
+
+        /* --- GIFT BOX --- */
+        #gift-scene { display: none; flex-direction: column; align-items: center; justify-content: center; }
+        .gift-box { font-size: 5.5rem; cursor: pointer; display: inline-block; transition: all 0.1s ease; filter: drop-shadow(0 0 0px gold); }
+        .shake-level { animation: wobble var(--speed) infinite ease-in-out; }
+        @keyframes wobble { 0%, 100% { transform: rotate(0) scale(1); } 25% { transform: rotate(-8deg) scale(1.05); } 75% { transform: rotate(8deg) scale(1.05); } }
+
+        /* --- CENTERED CAKE --- */
+        .cake-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 30px auto 10px; width: fit-content; }
+        .cake-emoji { font-size: 6rem; line-height: 1; z-index: 10; }
+        .candle { width: 8px; height: 35px; background: #fff; border-radius: 3px; position: absolute; top: -20px; z-index: 15; }
+        .flame { width: 14px; height: 22px; background: radial-gradient(circle at 50% 100%, #fff, #fffa00, #ff4500); border-radius: 50% 50% 20% 20%; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); animation: flicker 0.1s infinite alternate; z-index: 16; }
+        @keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1.2); } }
+
+        /* --- TICKET --- */
+        #ticket-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 150; display: none; align-items: center; justify-content: center; padding: 15px; }
+        .golden-ticket { background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); color: #4b3200; padding: 30px 20px; border-radius: 15px; width: 100%; max-width: 320px; box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); border: 3px solid #fff; animation: ticketIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes ticketIn { from { transform: scale(0.5) translateY(50px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+
+        .ribbon-container { position: fixed; top: 0; left: 0; width: 100%; height: 100px; pointer-events: none; z-index: 10; display: none; }
+        .ribbon { position: absolute; top: -10px; width: 6px; height: 100px; border-radius: 0 0 5px 5px; animation: swing 3s infinite ease-in-out; transform-origin: top; }
+        @keyframes swing { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+        .balloon-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+        .balloon { position: absolute; bottom: -100px; width: 50px; height: 70px; border-radius: 50%; animation: floatUp 6s ease-in forwards; }
+        @keyframes floatUp { 0% { transform: translateY(0); } 100% { transform: translateY(-120vh); } }
+    </style>
+</head>
+<body id="body">
+
+    <div class="ribbon-container" id="ribbon-box"></div>
+    <div class="balloon-container" id="balloon-zone"></div>
+
+    <div class="container" id="main-ui">
+        <div id="game-content">
+            <h1 class="wishing-text">Is it your Birthday?</h1>
+            <button class="game-btn" onclick="startLoading()">Yes, it is! ✨</button>
+        </div>
+
+        <div id="apology-scene">
+            <div id="apology-note">
+                "I know main thoda late hoon! Is digital gift ko pack karne mein thoda extra time lag gaya. <br><br>Maaf kiya na? 🥺"
+            </div>
+            <div class="apology-buttons">
+                <button class="game-btn" id="yes-btn" onclick="goToGift()">Maaf kiya! ❤️</button>
+                <button class="game-btn" id="no-btn" onmouseover="runAway(this)" ontouchstart="runAway(this)">Nahi! 😤</button>
+            </div>
+        </div>
+
+        <div id="gift-scene">
+            <h1 class="wishing-text">Mystery Box!</h1>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">Tap fast to unlock your gift</p>
+            <div class="gift-box shake-level" id="gift-box" style="--speed: 1.5s" onclick="tapGift()" ontouchstart="tapGift()">🎁</div>
+            <div class="tap-count" id="taps-left" style="margin-top:15px; font-weight:bold; color:#ffd700;">10 Taps to go</div>
+        </div>
+    </div>
+
+    <div id="ticket-wrapper">
+        <div class="golden-ticket">
+            <h2 style="font-family: 'Pacifico', cursive; font-size: 1.5rem; border-bottom: 2px dashed #4b3200; padding-bottom: 8px; margin-bottom: 15px;">Golden Ticket</h2>
+            <p style="font-weight: 800; font-size: 1.1rem; line-height: 1.5;">
+                Valid for everyday,<br>
+                Unlimited Smiles & <br>
+                Available for Listening.
+            </p>
+            <p style="font-size: 0.8rem; font-style: italic; margin-top: 20px; border-top: 1px solid rgba(75,50,0,0.15); padding-top: 8px;">No Expiration Date.</p>
+            <button class="game-btn" style="margin-top: 25px; background: #4b3200; color: #fff; width: 100%;" onclick="location.reload()">Re-play 🔄</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        let taps = 10;
+        let canTap = true;
+        const box = document.getElementById('gift-box');
+
+        function startLoading() {
+            document.getElementById('game-content').innerHTML = `<h1 class="wishing-text">20 Years Later...</h1><button class="game-btn" onclick="doDecoration()">Decorate! 🎈</button>`;
+        }
+
+        function doDecoration() {
+            document.getElementById('body').classList.add('party-mode');
+            confetti({ particleCount: 80, spread: 60, origin: { y: 0.7 } });
+            document.getElementById('game-content').innerHTML = `
+                <div class="cake-wrapper"><div class="candle"><div class="flame" id="flame"></div></div><div class="cake-emoji">🎂</div></div><br>
+                <button class="game-btn" id="ribbon-btn" onclick="addRibbons()">Hang Ribbons! 🎊</button>`;
+        }
+
+        function addRibbons() {
+            document.getElementById('ribbon-box').style.display = 'block';
+            for(let i=0; i<12; i++) {
+                const r = document.createElement('div'); r.className = 'ribbon'; r.style.left = (i*9)+'%';
+                r.style.backgroundColor = ['#FF4081','#FFD700','#03A9F4','#4CAF50'][i%4]; document.getElementById('ribbon-box').appendChild(r);
+            }
+            const btn = document.getElementById('ribbon-btn'); btn.innerHTML = "Blow Candle! 🌬️"; btn.onclick = blowCandle;
+        }
+
+        function blowCandle() {
+            if(document.getElementById('flame')) document.getElementById('flame').style.display = 'none';
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.7 } });
+            for (let i = 0; i < 20; i++) { setTimeout(() => { createBalloon(Math.random() * 85); }, i * 150); }
+            
+            setTimeout(() => {
+                document.getElementById('game-content').style.display = 'none';
+                document.getElementById('apology-scene').style.display = 'flex';
+            }, 2500);
+        }
+
+        // --- RUNAWAY NO GAME MECHANISM ---
+        function runAway(btn) {
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+
+            // Calculate max available space, keeping the button inside the visible container
+            const maxTop = containerRect.height - btnRect.height - 40; // 40px buffer
+            const maxLeft = containerRect.width - btnRect.width - 20;  // 20px buffer
+
+            // Generate random positions
+            const randomTop = Math.random() * maxTop;
+            const randomLeft = Math.random() * maxLeft;
+
+            // Apply the jump. We use fixed positioning within the container
+            btn.style.position = 'absolute';
+            btn.style.top = randomTop + 'px';
+            btn.style.left = randomLeft + 'px';
+        }
+
+        function goToGift() {
+            document.getElementById('apology-scene').style.display = 'none';
+            document.getElementById('gift-scene').style.display = 'flex';
+        }
+
+        function createBalloon(leftPos) {
+            const b = document.createElement('div'); b.className = 'balloon';
+            b.style.backgroundColor = ['#FF4081','#7B1FA2','#03A9F4','#FFC107','#4CAF50'][Math.floor(Math.random()*5)];
+            b.style.left = leftPos + '%';
+            document.getElementById('balloon-zone').appendChild(b);
+            setTimeout(() => b.remove(), 6000);
+        }
+
+        function tapGift(e) {
+            if(e) e.preventDefault();
+            if(!canTap) return;
+            taps--;
+            box.style.setProperty('--speed', ((taps * 0.12) + 0.05) + 's');
+            box.style.filter = `drop-shadow(0 0 ${15 - taps}px gold)`;
+            document.getElementById('taps-left').innerText = `${taps} Taps to go`;
+            confetti({ particleCount: 12, spread: 40, origin: { y: 0.8 } });
+            if (taps <= 0) {
+                canTap = false;
+                document.getElementById('body').classList.add('flash');
+                setTimeout(() => {
+                    document.getElementById('body').classList.remove('flash');
+                    document.getElementById('gift-scene').style.display = 'none';
+                    document.getElementById('ticket-wrapper').style.display = 'flex';
+                    confetti({ particleCount: 250, spread: 100, origin: { y: 0.5 }, colors: ['#ffd700', '#ffffff'] });
+                }, 150);
+            }
+        }
+    </script>
+</body>
+</html>
